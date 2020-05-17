@@ -1,0 +1,25 @@
+### https://raw.github.com/github/gitignore/098aee26a1c69b0bf9e5723ee6db9589d21e74b0/Global/OSX.gitignore
+
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+
+### https://raw.github.com/github/gitignore/098aee26a1c69b0bf9e5723ee6db9589d21e74b0/Global/vim.gitignore
+
+.*.s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+
+
