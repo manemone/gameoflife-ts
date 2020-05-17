@@ -23,3 +23,21 @@ Session.vim
 *~
 
 
+### https://raw.github.com/github/gitignore/098aee26a1c69b0bf9e5723ee6db9589d21e74b0/Node.gitignore
+
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+pids
+logs
+results
+
+npm-debug.log
+node_modules
+
