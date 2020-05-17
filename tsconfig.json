@@ -68,6 +68,6 @@
     "types": ["pixi.js"],
   },
   "include": [
-    "./ts/**/*.ts"
+    "./src/ts/**/*.ts"
   ]
 }

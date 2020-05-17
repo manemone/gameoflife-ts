@@ -12,8 +12,14 @@ $ npm install
 ```
 
 ## Build
+### For development environment
 ```bash
-$ npm run build
+$ npm run build-dev
+```
+
+### For prod environment
+```bash
+$ npm run build-prod
 ```
 
 ## Run
