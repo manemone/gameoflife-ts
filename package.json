@@ -1,0 +1,19 @@
+{
+  "name": "lifegame-ts",
+  "version": "1.0.0",
+  "description": "An implementation of life game for learning TypeScript",
+  "main": "index.js",
+  "dependencies": {
+    "ts-loader": "^7.0.4",
+    "typescript": "^3.9.2",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "tsc": "tsc",
+    "build": "webpack"
+  },
+  "author": "manemone",
+  "license": "MIT"
+}
