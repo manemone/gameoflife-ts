@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   // The main js file. The whole script will be executed from this file
@@ -6,8 +7,16 @@ module.exports = {
 
   output: {
     path: path.join(__dirname, "dist"),
-    filename: "index.js"
+    filename: "index.[hash:8].js"
   },
+
+  plugins: [
+    // Copy the entry html file to `dist` and insert a reference line to the compiled js file
+    new HtmlWebpackPlugin({
+      file: path.join(__dirname, 'dist', 'index.html'),
+      template: 'src/index.html'
+    })
+  ],
 
   module: {
     rules: [{
