@@ -11,12 +11,14 @@
     "typescript": "^3.9.2",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^4.2.2"
   },
   "scripts": {
     "tsc": "tsc",
     "build-dev": "webpack --config webpack.dev.js",
-    "build-prod": "webpack --config webpack.prod.js"
+    "build-prod": "webpack --config webpack.prod.js",
+    "start": "webpack-dev-server --open 'google chrome' --config webpack.dev.js"
   },
   "author": "manemone",
   "license": "MIT"
