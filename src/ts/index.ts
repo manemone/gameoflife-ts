@@ -1,4 +1,5 @@
 import { User } from "./User";
+import "../assets/stylesheets/style.scss";
 
 const user = new User('Doe', 'John', 20);
 

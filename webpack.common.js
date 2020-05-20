@@ -56,6 +56,40 @@ module.exports = {
           },
         }
       },
+
+      // Use Sass
+      {
+        test: /\.scss/,
+        use: [
+          // Generate tag `link` and embed into `head` element
+          'style-loader',
+
+          // Resolve `@import` or `url()` in the CSS files
+          {
+            loader: 'css-loader',
+            options: {
+              // Bundle content of `url()` method
+              url: true,
+
+              // Use source map
+              sourceMap: true,
+
+              // 0 => no loaders (default);
+              // 1 => postcss-loader;
+              // 2 => postcss-loader, sass-loader
+              importLoaders: 2
+            },
+          },
+
+          // Compile Sass
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            }
+          }
+        ],
+      },
     ]
   },
   // To resolve `.ts` files on import statement
