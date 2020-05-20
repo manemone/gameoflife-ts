@@ -1,6 +1,6 @@
 # lifegame-ts
 ## What's this?
-An implementation for learning TypeScript.
+An implementation of [Conway's game of life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) for learning TypeScript.
 
 ## Dependencies
 - npm
@@ -11,18 +11,24 @@ An implementation for learning TypeScript.
 $ npm install
 ```
 
-## Build
-### For development environment
+## Scripts
+### Build
+#### For development environment
 ```bash
 $ npm run build-dev
 ```
 
-### For prod environment
+#### For prod environment
 ```bash
 $ npm run build-prod
+``` 
+
+### Cleaning up build directory
+```bash
+$ npm run clean
 ```
 
-## Run
+### Starting dev server
 ```bash
-$ open index.html
+$ npm run start
 ```
