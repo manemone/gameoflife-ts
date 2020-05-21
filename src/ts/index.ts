@@ -1,15 +1,21 @@
-import { User } from "./User";
 import "../assets/stylesheets/style.scss";
+import * as PIXI from 'pixi.js';
 
-const user = new User('Doe', 'John', 20);
+const app = new PIXI.Application({
+  width: 720,
+  height: 720,
+  backgroundColor: 0x1099bb,
+  view: document.querySelector('#scene') as HTMLCanvasElement
+});
 
-const contentsElem = document.getElementById('contents');
+const texture = PIXI.Texture.from(require('../assets/images/campbel_can.jpg').default);
+const image = new PIXI.Sprite(texture);
+image.anchor.set(0.5);
+image.x = 360;
+image.y = 360;
+image.scale.set(0.5, 0.5);
+app.stage.addChild(image);
 
-if (!!contentsElem) {
-  contentsElem.innerText = `${user.familyName} ${user.givenName}`;
-
-  const imgElem = document.createElement('img');
-  const img = require('../assets/images/campbel_can.jpg');
-  imgElem.src = img.default;
-  contentsElem.appendChild(imgElem);
-}
+app.ticker.add((delta) => {
+  image.rotation -= 0.01 * delta;
+});
