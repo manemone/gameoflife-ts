@@ -1,14 +1,6 @@
 {
+  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "sourceMap": false,
-    "target": "es5",
-    "module": "commonjs",
-    "outDir": "./dist",
-    "strict": true,
-    "esModuleInterop": true,
-    "downlevelIteration": true
+    "sourceMap": false
   },
-  "include": [
-    "./src/ts/**/*.ts"
-  ]
 }
