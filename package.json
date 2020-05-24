@@ -25,7 +25,7 @@
     "tsc": "tsc",
     "build-dev": "webpack --config webpack.dev.js",
     "build-prod": "webpack --config webpack.prod.js",
-    "start": "webpack-dev-server --open 'google chrome' --config webpack.dev.js",
+    "start": "webpack-dev-server --open 'firefox' --config webpack.dev.js",
     "clean": "rimraf dist"
   },
   "author": "manemone",

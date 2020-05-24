@@ -2,24 +2,70 @@ import "../assets/stylesheets/style.scss";
 import * as PIXI from 'pixi.js';
 import * as GOL from './GOL';
 
-const field = new GOL.Field(100, 100);
-const app = new PIXI.Application({
-  width: Math.max((GOL.Const.CELLSIZE + GOL.Const.CELLSPACE) * Math.max(...field.cells.map(v => v.length)) - GOL.Const.CELLSPACE, 0),
-  height: Math.max((GOL.Const.CELLSIZE + GOL.Const.CELLSPACE) * field.cells.length - GOL.Const.CELLSPACE, 0),
-  backgroundColor: 0x1099bb,
-  view: document.querySelector('#scene') as HTMLCanvasElement
-});
+class GOLManager {
+  field: GOL.Field
+  app: PIXI.Application
+  cellImages: PIXI.Sprite[][]
+  duration: number
+  lastUpdateDuration: number
 
-field.cells[49][49].lives = true;
-const cellImages = field.cells.map((cells, i) => {
-  cells.map((cell, j) => {
-    const sprite = new PIXI.Sprite(PIXI.Texture.WHITE);
-    sprite.tint = cell.lives ? 0xff0000 : 0xffffff;
-    sprite.width = GOL.Const.CELLSIZE;
-    sprite.height = GOL.Const.CELLSIZE;
-    sprite.x = j * (GOL.Const.CELLSIZE + GOL.Const.CELLSPACE);
-    sprite.y = i * (GOL.Const.CELLSIZE + GOL.Const.CELLSPACE);
-    app.stage.addChild(sprite);
-    return sprite;
-  });
-});
+  constructor(canvasSelector: string, width: number, height: number) {
+    this.field = new GOL.Field(width, height);
+    this.app = new PIXI.Application({
+      width: Math.max((GOL.Const.CELLSIZE + GOL.Const.CELLSPACE) * Math.max(...this.field.cells.map(v => v.length)) - GOL.Const.CELLSPACE, 0),
+      height: Math.max((GOL.Const.CELLSIZE + GOL.Const.CELLSPACE) * this.field.cells.length - GOL.Const.CELLSPACE, 0),
+      backgroundColor: 0xffffff,
+      view: document.querySelector(canvasSelector) as HTMLCanvasElement
+    });
+
+    this.cellImages = this.field.cells.map((cells, i) => {
+      return cells.map((cell, j) => {
+        const sprite = new PIXI.Sprite(PIXI.Texture.WHITE);
+        sprite.width = GOL.Const.CELLSIZE;
+        sprite.height = GOL.Const.CELLSIZE;
+        sprite.x = j * (GOL.Const.CELLSIZE + GOL.Const.CELLSPACE);
+        sprite.y = i * (GOL.Const.CELLSIZE + GOL.Const.CELLSPACE);
+        this.app.stage.addChild(sprite);
+        return sprite;
+      });
+    });
+    this.applyFieldToImage();
+
+    this.duration = 0;
+    this.lastUpdateDuration = 0;
+  }
+
+  start() {
+    this.duration = 0;
+    this.lastUpdateDuration = 0;
+    this.field.randomize();
+    this.app.ticker.add(deltaTime => this.animate(deltaTime));
+  }
+
+  animate(deltaTime: number) {
+      if (typeof deltaTime === 'number') {
+        this.duration += deltaTime;
+      }
+
+      if (1 < this.duration - this.lastUpdateDuration) {
+        this.evolve();
+        this.lastUpdateDuration = this.duration;
+      }
+  }
+
+  evolve() {
+    this.field.eveolve();
+    this.applyFieldToImage();
+  }
+
+  private applyFieldToImage() {
+    for(let i = 0; i < this.field.cells.length; i++) {
+      for(let j = 0; j < this.field.cells[i].length; j++) {
+        this.cellImages[i][j].tint = this.field.cells[i][j].lives ? 0xff000 : 0xffffff;
+      }
+    }
+  }
+}
+
+const manager = new GOLManager('#scene', 100, 100);
+manager.start();
