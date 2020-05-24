@@ -47,7 +47,7 @@ class GOLManager {
         this.duration += deltaTime;
       }
 
-      if (1 < this.duration - this.lastUpdateDuration) {
+      if (10 < this.duration - this.lastUpdateDuration) {
         this.evolve();
         this.lastUpdateDuration = this.duration;
       }
@@ -61,11 +61,24 @@ class GOLManager {
   private applyFieldToImage() {
     for(let i = 0; i < this.field.cells.length; i++) {
       for(let j = 0; j < this.field.cells[i].length; j++) {
-        this.cellImages[i][j].tint = this.field.cells[i][j].lives ? 0xff000 : 0xffffff;
+        const cell = this.field.cells[i][j];
+        const image = this.cellImages[i][j];
+        if (!cell.lives) {
+          image.tint = 0xebedf0;
+        }
+        else if (cell.environment == 'overPopulation') {
+          image.tint = 0x239a3b;
+        }
+        else if (cell.environment == 'maintainable') {
+          image.tint = 0x7bc96f;
+        }
+        else {
+          image.tint = 0xc6e48b;
+        }
       }
     }
   }
 }
 
-const manager = new GOLManager('#scene', 100, 100);
+const manager = new GOLManager('#scene', 69, 7);
 manager.start();
