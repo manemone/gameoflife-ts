@@ -6,6 +6,7 @@ class GOLManager {
   field: GOL.Field
   app: PIXI.Application
   cellImages: PIXI.Sprite[][]
+  controlPanel: ControlPanel
   duration: number
   lastUpdateDuration: number
 
@@ -30,6 +31,9 @@ class GOLManager {
       });
     });
     this.applyFieldToImage();
+
+    this.controlPanel = new ControlPanel(this.field);
+    this.app.stage.addChild(this.controlPanel.button);
 
     this.duration = 0;
     this.lastUpdateDuration = 0;
@@ -77,6 +81,37 @@ class GOLManager {
         }
       }
     }
+  }
+}
+
+class ControlPanel {
+  static width: number = 160
+
+  field: GOL.Field
+  button: PIXI.Text
+
+  constructor(field: GOL.Field) {
+    this.field = field;
+
+    const button = new PIXI.Text('Restart', {
+      fontFamily: ["Helvetica Neue",
+        "Arial",
+        "Hiragino Kaku Gothic ProN",
+        "Hiragino Sans",
+        "Meiryo",
+        "sans-serif"
+      ],
+      fontSize: 22, fill: 0x7a7a7a, align: 'center' });
+    button.width = ControlPanel.width;
+    button.height = 40;
+    button.interactive = true;
+
+    button.on('click', this.reset).on('touchstart', this.reset);
+    this.button = button;
+  }
+
+  public reset = () => {
+    this.field.randomize();
   }
 }
 
