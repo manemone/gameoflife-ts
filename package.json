@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "An implementation of life game for learning TypeScript",
   "dependencies": {
-    "pixi.js": "^5.2.4"
+    "pixi.js": "^5.2.4",
+    "reset.css": "^2.0.2"
   },
   "devDependencies": {
     "css-loader": "^3.5.3",
