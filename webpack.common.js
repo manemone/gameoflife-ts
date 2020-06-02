@@ -4,7 +4,7 @@ const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 module.exports = {
   // The main js file. The whole script will be executed from this file
-  entry: './src/ts/index.ts',
+  entry: './src/ts/index.tsx',
 
   output: {
     path: path.join(__dirname, "dist"),
@@ -33,8 +33,8 @@ module.exports = {
   module: {
     rules: [
       {
-        // Files has `ts` suffix
-        test: /\.ts$/,
+        // Files has suffix of `ts` or `tsx`
+        test: /\.tsx?$/,
         // will be compiled as TypeScript code
         use: 'ts-loader'
       },
@@ -99,6 +99,7 @@ module.exports = {
     ],
     extensions: [
       '.ts',
+      '.tsx',  // React.js files
       '.js' // Load pure-js library under `node_modules`
     ]
   }

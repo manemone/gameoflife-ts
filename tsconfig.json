@@ -5,9 +5,11 @@
     "outDir": "./dist",
     "strict": true,
     "esModuleInterop": true,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    // Support for JSX
+    "jsx": "react"
   },
   "include": [
-    "./src/ts/**/*.ts"
+    "./src/ts/**/*.ts", "src/ts/index.tsx"
   ]
 }

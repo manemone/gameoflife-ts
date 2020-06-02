@@ -1,6 +1,16 @@
 import "../assets/stylesheets/style.scss";
+import React from "react";
+import ReactDOM from "react-dom";
 import * as PIXI from 'pixi.js';
 import * as GOL from './GOL';
+
+const ReactApp = () => {
+  return <div className="container">
+    <canvas id="scene"></canvas>
+  </div>
+};
+
+ReactDOM.render(ReactApp(), document.getElementById("app"));
 
 class GOLManager {
   field: GOL.Field

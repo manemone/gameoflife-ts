@@ -4,9 +4,13 @@
   "description": "An implementation of life game for learning TypeScript",
   "dependencies": {
     "pixi.js": "^5.2.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "reset.css": "^2.0.2"
   },
   "devDependencies": {
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
     "css-loader": "^3.5.3",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
@@ -26,7 +30,7 @@
     "tsc": "tsc",
     "build-dev": "webpack --config webpack.dev.js",
     "build-prod": "webpack --config webpack.prod.js",
-    "start": "webpack-dev-server --open 'firefox' --config webpack.dev.js",
+    "start": "webpack-dev-server --open 'Google Chrome' --config webpack.dev.js",
     "clean": "rimraf dist"
   },
   "author": "manemone",
